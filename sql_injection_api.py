@@ -77,33 +77,33 @@ def detect_injections_api():
     prediction_sql_password = model_sql.predict(query_sql_password)
 
     # Predict XSS for username and password
-    query_xss_username = tfidf_vectorizer_xss.transform([username.lower()])
-    query_xss_password = tfidf_vectorizer_xss.transform([password.lower()])
-    prediction_xss_username = model_xss.predict(query_xss_username)
-    prediction_xss_password = model_xss.predict(query_xss_password)
+    #query_xss_username = tfidf_vectorizer_xss.transform([username.lower()])
+    #query_xss_password = tfidf_vectorizer_xss.transform([password.lower()])
+    #prediction_xss_username = model_xss.predict(query_xss_username)
+    #prediction_xss_password = model_xss.predict(query_xss_password)
 
     # Predict HTML injection for username and password
-    query_html_username = tfidf_vectorizer_html.transform([username.lower()])
-    query_html_password = tfidf_vectorizer_html.transform([password.lower()])
-    prediction_html_username = model_html.predict(query_html_username)
-    prediction_html_password = model_html.predict(query_html_password)
+    #query_html_username = tfidf_vectorizer_html.transform([username.lower()])
+    #query_html_password = tfidf_vectorizer_html.transform([password.lower()])
+    #prediction_html_username = model_html.predict(query_html_username)
+    #prediction_html_password = model_html.predict(query_html_password)
 
     response = {
         "username_is_sql_injection": bool(prediction_sql_username),
         "password_is_sql_injection": bool(prediction_sql_password),
-        "username_is_xss": bool(prediction_xss_username),
-        "password_is_xss": bool(prediction_xss_password),
-        "username_is_html_injection": bool(prediction_html_username),
-        "password_is_html_injection": bool(prediction_html_password),
+        #"username_is_xss": bool(prediction_xss_username),
+        #"password_is_xss": bool(prediction_xss_password),
+        #"username_is_html_injection": bool(prediction_html_username),
+        #"password_is_html_injection": bool(prediction_html_password),
         "message": "No injection detected"
     }
 
     if response["username_is_sql_injection"] or response["password_is_sql_injection"]:
         response["message"] = "Malicious Input detected"
-    elif response["username_is_xss"] or response["password_is_xss"]:
-        response["message"] = "Malicious Input detected"
-    elif response["username_is_html_injection"] or response["password_is_html_injection"]:
-        response["message"] = "Malicious Input detected"
+    #elif response["username_is_xss"] or response["password_is_xss"]:
+        #response["message"] = "Malicious Input detected"
+    #elif response["username_is_html_injection"] or response["password_is_html_injection"]:
+        #response["message"] = "Malicious Input detected"
     else:
         response["message"] = "No injection detected"
 

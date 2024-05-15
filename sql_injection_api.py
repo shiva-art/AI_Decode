@@ -3,6 +3,9 @@ from flask_cors import CORS
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from waitress import serve
+import urllib.parse
+import html
+import base64
 
 app = Flask(__name__)
 CORS(app)  # Allow Cross-Origin Resource Sharing

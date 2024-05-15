@@ -33,8 +33,7 @@ def decode_payload(payload):
 @app.route('/check-note', methods=['POST'])
 def check_note():
     note = request.json.get('note')
-
-     note = decode_payload(note)
+    note = decode_payload(note)
      
     # Vectorize input for XSS detection
     query_xss = tfidf_vectorizer_xss.transform([note.lower()])
